@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Regalo Virtual 💛</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: black;
+      overflow: hidden;
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+    }
+
+    /* Botón corazón */
+    #playButton {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2em;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: red;
+      animation: latido 1s infinite;
+    }
+
+    @keyframes latido {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    /* Estrellas */
+    .estrella {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: parpadeo 2s infinite alternate;
+    }
+
+    @keyframes parpadeo {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+
+    /* Cometas */
+    .cometa {
+      position: absolute;
+      width: 150px;
+      height: 2px;
+      background: linear-gradient(90deg, white, transparent);
+      opacity: 0.8;
+      transform: rotate(-45deg);
+      animation: cometa 5s linear infinite;
+    }
+
+    @keyframes cometa {
+      from { top: -50px; left: -200px; opacity: 1; }
+      to { top: 100%; left: 120%; opacity: 0; }
+    }
+
+    /* Flores amarillas */
+    .flores {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 350px;
+      animation: aparecerFlores 3s ease-in forwards;
+      opacity: 0;
+    }
+
+    @keyframes aparecerFlores {
+      to { opacity: 1; }
+    }
+
+    /* Dedicatorias */
+    .dedicatoria {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5em;
+      opacity: 0;
+      animation: aparecerTexto 3s forwards;
+    }
+
+    #texto1 { top: 10%; animation-delay: 2s; }
+    #texto2 { top: 20%; animation-delay: 7s; }
+    #texto3 { top: 30%; animation-delay: 12s; }
+    #texto4 { top: 40%; animation-delay: 17s; }
+
+    @keyframes aparecerTexto {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Botón para reproducir música -->
+  <button id="playButton">❤️</button>
+  <audio id="musica" loop>
+    <source src="corazon.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <!-- Estrellas -->
+  <script>
+    for (let i = 0; i < 100; i++) {
+      let estrella = document.createElement("div");
+      estrella.className = "estrella";
+      estrella.style.top = Math.random() * window.innerHeight + "px";
+      estrella.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(estrella);
+    }
+
+    // Cometas cada cierto tiempo
+    setInterval(() => {
+      let cometa = document.createElement("div");
+      cometa.className = "cometa";
+      cometa.style.top = Math.random() * 200 + "px";
+      cometa.style.left = "-200px";
+      document.body.appendChild(cometa);
+      setTimeout(() => cometa.remove(), 5000);
+    }, 7000);
+
+    // Botón música
+    const playButton = document.getElementById("playButton");
+    const musica = document.getElementById("musica");
+    playButton.addEventListener("click", () => {
+      musica.play();
+      playButton.style.display = "none"; // Oculta el botón después
+    });
+  </script>
+
+  <!-- Flores -->
+  <img src="flores amarillas.png" alt="Flores Amarillas" class="flores">
+
+  <!-- Textos -->
+  <div class="dedicatoria" id="texto1">✨ Eres mi solecito yyy no sabes cuanto te amo jejejej ✨</div>
+  <div class="dedicatoria" id="texto2">🌻 Mi vida sigue con mucha felicidad gracias a ti jijijiji 🌻</div>
+  <div class="dedicatoria" id="texto3">💛 Te amo como no tienes idea AAAAAAAAAAAAAAAAA 💛</div>
+  <div class="dedicatoria" id="texto4">con musho cariño te doy tus flores amarillas jijijijijij</div>
+</body>
+</html>
